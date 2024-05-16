@@ -1,25 +1,28 @@
 import { createContext, useState } from 'react';
 
 interface SidebarContextProps {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
+  isCollapsed: boolean;
+  toggleSidebarcollapse: () => void;
 }
 
-const SidebarContext = createContext<SidebarContextProps>({
-  isOpen: false,
-  setIsOpen: () => { },
-});
+const initialValue: SidebarContextProps = {
+  isCollapsed: false,
+};
 
-export const SidebarProvider = ({ children }: { children: React.ReactNode}) => {
-  const [isOpen, setIsOpen] = useState(false);
+const SidebarContext = createContext<SidebarContextProps>(initialValue);
 
-  const toggleSidebar = () => setIsOpen(!isOpen);
+const SidebarProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [isCollapsed, setCollapse] = useState(false);
+
+  const toggleSidebarcollapse = () => {
+    setCollapse((prevState) => !prevState);
+  };
 
   return (
-    <SidebarContext.Provider value={{ isOpen, toggleSidebar }}>
+    <SidebarContext.Provider value={{ isCollapsed, toggleSidebarcollapse }}>
       {children}
     </SidebarContext.Provider>
   );
 };
 
-export default SidebarContext;
+export { SidebarContext, SidebarProvider };

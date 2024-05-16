@@ -1,10 +1,10 @@
 import { AlignJustify, CalendarDays, ChevronDown, LayoutGrid } from 'lucide-react'
 import React from 'react'
-// import {
-//   Popover,
-//   PopoverContent,
-//   PopoverTrigger,
-// } from "@/components/ui/popover"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 
 const Header = () => {
@@ -21,7 +21,7 @@ const Header = () => {
             <span><CalendarDays size={20} /></span>
             <span>16 May 2024</span>
           </div>
-          {/* <Popover>
+          <Popover>
             <PopoverTrigger className='flex items-center gap-2 cursor-pointer'>
             <div className='w-8 h-8 bg-white rounded-full flex items-center justify-center font-bold'>A</div>
               Aisha
@@ -30,7 +30,7 @@ const Header = () => {
             <PopoverContent className='w-18'>
               <button>Login</button>
             </PopoverContent>
-          </Popover> */}
+          </Popover>
         </div>
       </div>
     </div >

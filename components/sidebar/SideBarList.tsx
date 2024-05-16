@@ -10,16 +10,10 @@ import React, { useMemo, useState } from 'react'
 const SideBarList = ({ item }: { item: TSideBarItems }) => {
   const { title, icon, path, subMenuItems } = item;
   const [expanded, setExpanded] = useState(false);
-  const router = useRouter();
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  const activeHandler = () => {
-    if (subMenuItems && subMenuItems.length > 0) {
-      return setExpanded(!expanded)
-    }
 
-    router.push(path)
-  }
   const isActive = useMemo(() => {
     if (subMenuItems && subMenuItems.length > 0) {
       if (subMenuItems.find((item) => item.path === pathname)) {
@@ -32,7 +26,7 @@ const SideBarList = ({ item }: { item: TSideBarItems }) => {
 
   return (
     <div>
-      <div onClick={activeHandler} className={`${isActive && "bg-[#1E2227] text-white"} flex gap-3 items-center my-2 group hover:bg-[#1E2227] p-2 rounded-md cursor-pointer hover:text-white
+      <div  className={`${isActive && "bg-[#1E2227] text-white"} flex gap-3 items-center my-2 group hover:bg-[#1E2227] p-2 rounded-md cursor-pointer hover:text-white
       duration-300 ease-out transition-all`}>
         <div className='flex items-center justify-between w-full'>
           <div className='flex gap-3 items-center text-sm'>
