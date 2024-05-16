@@ -36,7 +36,7 @@ const SideBarList = ({ item }: { item: TSideBarItems }) => {
         <div className='flex items-center justify-between w-full'>
           <div className='flex gap-3 items-center text-sm'>
             <span className={`${isActive && " text-white"}  group-hover:text-white`}>{icon}</span>
-            <span className='group-hover:text-white'>{title}</span>
+            <span className='group-hover:text-white hidden md:flex'>{title}</span>
           </div>
           <div>
             {subMenuItems && subMenuItems.length > 0 && <ChevronDown size={15} className={expanded ? "rotate-180 duration-200 ease-in-out" : ""} />}
