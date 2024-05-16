@@ -32,11 +32,12 @@ const SideBarList = ({ item }: { item: TSideBarItems }) => {
 
   return (
     <div>
-      <div onClick={activeHandler} className={`${isActive && "bg-[#1E2227] text-white"} flex gap-3 items-center my-2 group hover:bg-[#1E2227] p-2 rounded-md cursor-pointer hover:text-white`}>
+      <div onClick={activeHandler} className={`${isActive && "bg-[#1E2227] text-white"} flex gap-3 items-center my-2 group hover:bg-[#1E2227] p-2 rounded-md cursor-pointer hover:text-white
+      duration-300 ease-out transition-all`}>
         <div className='flex items-center justify-between w-full'>
           <div className='flex gap-3 items-center text-sm'>
             <span className={`${isActive && " text-white"}  group-hover:text-white`}>{icon}</span>
-            <span className='group-hover:text-white hidden md:flex'>{title}</span>
+            <span className='group-hover:text-white hidden md:flex duration-300 ease-out transition-all'>{title}</span>
           </div>
           <div>
             {subMenuItems && subMenuItems.length > 0 && <ChevronDown size={15} className={expanded ? "rotate-180 duration-200 ease-in-out" : ""} />}
