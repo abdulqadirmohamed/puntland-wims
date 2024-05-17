@@ -1,9 +1,10 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import ReactApexChart from 'react-apexcharts';
 import Chart from "react-apexcharts";
 
 const WaterSourceStatus = () => {
+
     const waterStatus = [
         { title: "Borehole", total: 5 },
         { title: "dam", total: 20 },
@@ -14,13 +15,22 @@ const WaterSourceStatus = () => {
         chart: {
             id: 'apexchart-example'
         },
+        legend: {
+            position: 'bottom'
+        },
+        colors: ["#FDB515", "#15229C", "#2ED325", "#FC300A"],
+        plotOptions: {
+            bar: {
+                horizontal: false
+            }
+        },
         labels: ["Planned", "Completed", "Factional", "Non-functional"],
     }
     const series = [5, 1, 22, 2]; //our data
     return (
         <div className='bg-white rounded-xl p-6'>
             <div className='flex gap-4'>
-                <h1 className='font-bold'>Water source status  </h1>
+                <h1>Water source status  </h1>
                 <div className='flex gap-3'>
                     {waterStatus.map((item, index) => (
                         <div className='bg-[#0D6EFD] text-white flex gap-2 items-center rounded-md py-[2px] px-[6px]' key={index}>
@@ -30,12 +40,14 @@ const WaterSourceStatus = () => {
                     ))}
                 </div>
             </div>
-            <hr className='my-8' />
+            <hr className='my-4' />
             <div className=''>
-                <ReactApexChart type="donut" options={option} series={series} height={250} />
+                <ReactApexChart type="donut" options={option} series={series} height={300} />
             </div>
         </div>
     )
 }
 
 export default WaterSourceStatus
+
+

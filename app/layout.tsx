@@ -19,10 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex justify-between bg-[#F2F3F5]`}>
-        <Sidebar />
-        <main className="w-full h-full mx-6">
-          <Header />
-          <div className="p-4">
+        <div className="w-1/6 h-full fixed left-0 overflow-y-auto">
+          <Sidebar />
+        </div>
+        <main className="w-5/6 ml-auto">
+          <div className="mx-8">
+            <Header />
+          </div>
+          <div className="my-4 mx-8">
             {children}
           </div>
         </main>
