@@ -14,16 +14,16 @@ export default function Home() {
   return (
     <main>
       <Summery />
-      <div className="grid grid-cols-2 gap-6 my-4">
+      <div className="grid md:grid-cols-2 gap-6 my-4">
         <WaterSourceStatus />
         <WaterSourcesTimeline />
       </div>
-      <div className="grid grid-cols-3 gap-6 my-4">
+      <div className="grid md:grid-cols-3 gap-6 my-4">
         <RegionalAverages />
         <WaterSourcesRegions />
         <BoreholeTopParameters />
       </div>
-      <div className="grid grid-cols-3 gap-6 my-4">
+      <div className="grid md:grid-cols-3 gap-6 my-4">
         <VillageWaterSourceStatus />
         <MinMaxforPH />
         <MinMaxDisSolvedSolids />

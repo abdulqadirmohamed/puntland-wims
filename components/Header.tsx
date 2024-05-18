@@ -26,7 +26,7 @@ const Header = () => {
   }, [])
   return (
     <div className='relative '>
-      <div className={`${isSticky ? 'bg-[#14171C] fixed z-40 transition-all duration-300' : 'bg-[#a52e91]'} h-16   text-white py-3 rounded-b-xl transition-all`}>
+      <div className={`${isSticky ? 'bg-[#14171C] fixed z-40 transition-all duration-300' : 'bg-[#a52e91]'} h-16 text-white py-3 rounded-b-xl transition-all`}>
         <div className='flex justify-between items-center mx-4'>
           <div className='flex gap-4 items-center'>
             <span className='cursor-pointer'><AlignJustify size={20} /></span>
