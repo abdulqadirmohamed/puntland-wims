@@ -1,9 +1,9 @@
-import TestMap from '@/components/map/TestMap'
+import Map from '@/components/map/Map'
 import React from 'react'
 
 const page = () => {
   return (
-    <TestMap/>
+    <Map/>
   )
 }
 
