@@ -6,37 +6,37 @@ export const SideBarItems: TSideBarItems[] = [
     {
         title: "Dashboard",
         path: "/",
-        icon: <LayoutDashboard />
+        icon: <LayoutDashboard size={20}/>
     },
     {
         title: "Regions",
         path: "/region",
-        icon: <Building />,
+        icon: <Building size={20}/>,
     },
     {
         title: "Districts",
         path: "/district ",
-        icon: <School />,
+        icon: <School size={20}/>,
     },
     {
         title: "Village",
         path: "/village",
-        icon: <University />,
+        icon: <University size={20}/>,
     },
     {
         title: "Water sources",
         path: "/water-sources",
-        icon: <Droplet />,
+        icon: <Droplet size={20}/>,
     },
     {
         title: "Map",
         path: "/map",
-        icon: <Map />,
+        icon: <Map size={20}/>,
     },
     {
         title: "Administration",
         path: "/administration",
-        icon: <User />,
+        icon: <User size={20}/>,
     },
     
    

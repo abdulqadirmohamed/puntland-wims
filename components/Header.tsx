@@ -6,35 +6,63 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { SideBarItems } from './sidebar/Constant'
+import Link from 'next/link'
 
 
 const Header = () => {
-  const [isSticky, setIsSticky] = useState(false);
+  const [isHeaderFixed, setIsHeaderFixed] = useState(false);
 
-  const scrolHeader = () => {
-    if (window.scrollY >= 20) {
-      setIsSticky(true)
-    } else {
-      setIsSticky(false)
-    }
-  }
   useEffect(() => {
-    window.addEventListener('scroll', scrolHeader)
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsHeaderFixed(true);
+      } else {
+        setIsHeaderFixed(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
     return () => {
-      window.addEventListener('scroll', scrolHeader)
-    }
-  }, [])
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
-    <div className='relative '>
-      <div className={`${isSticky ? 'bg-[#14171C] fixed z-40 transition-all duration-300' : 'bg-[#a52e91]'} h-16 text-white py-3 rounded-b-xl transition-all`}>
+    <div className=''>
+      {/* <div className={`${isHeaderFixed ? 'fixed z-40 transition-all ease-in duration-300 top-0' : ''} h-16  bg-[#14171C]  text-white py-3 rounded-b-xl transition-all w-full`}> */}
+      <div className={` h-16  bg-[#14171C]  text-white py-3 rounded-b-xl transition-all w-full z-50`}>
         <div className='flex justify-between items-center mx-4'>
           <div className='flex gap-4 items-center'>
             <span className='cursor-pointer'><AlignJustify size={20} /></span>
-            <span className='bg-[#1E2227] text-[#9c9c9c] p-3 rounded-full cursor-pointer'><LayoutGrid size={20} /></span>
-            <h1>Water Information Management System</h1>
+            <span>
+              <Popover>
+                <PopoverTrigger className='flex items-center gap-2 cursor-pointer relative'>
+                  <div className='bg-[#1E2227] text-[#9c9c9c] p-3 rounded-full cursor-pointer'>
+                    <LayoutGrid size={20} />
+                  </div>
+                </PopoverTrigger>
+                <PopoverContent className='min-w-18 absolute left-0'>
+                  <div className="grid gap-4">
+                    <div className="space-y-2 bg-[#757FEF] rounded-md text-white text-lg font-bold px-4 py-3 h-fit w-full">
+                      <h4 className="font-medium leading-none">Quick Links</h4>
+                    </div>
+                    <div className='flex flex-wrap items-center justify-center gap-6 '>
+                      {SideBarItems.map((item, index) => (
+                        <Link href={item.path} className='flex items-center flex-col text-[14px] text-[#939cfd] hover:text-[#757FEF]' key={index}>
+                          <span className='text-[9px]'>{item.icon}</span>
+                          <h1 >{item.title}</h1>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </span>
+            <h1 className='hidden md:flex'>Water Information Management System</h1>
           </div>
           <div className='flex items-center gap-6 text-sm text-[#838dfd] z-50'>
-            <div className='flex items-center'>
+            <div className='lg:flex items-center hidden'>
               <span><CalendarDays size={20} /></span>
               <span>16 May 2024</span>
             </div>

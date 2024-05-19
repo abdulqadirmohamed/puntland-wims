@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <main>
       <Summery />
-      <div className="grid md:grid-cols-2 gap-6 my-4">
+      <div className="grid lg:grid-cols-2 gap-6 my-4">
         <WaterSourceStatus />
         <WaterSourcesTimeline />
       </div>

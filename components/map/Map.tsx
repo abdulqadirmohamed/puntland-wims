@@ -15,34 +15,21 @@ L.Icon.Default.mergeOptions({
 
 const markers = [
     {
-        geocode: [8.132024, 47.921896],
-        popUp: `Region: SANAAG
-        District: Dhahar
-        Village: Boodacad
-        Type: Borehole
-        Depth(m): 0
-        Use type: Rural
-        Use type connection: 0
-        Ownership: Health center
-        Geo Position:9.7480, 48.8251
-        Water Quality:
-        ph:
-        temperature:
-        conductivity:
-        dissolvedsolids:
-        `
+        geocode: [8.8278, 48.8853],
+        popUp: "Cuun"
+        
     },
     {
-        geocode: [8.474261, 47.355194],
-        popUp: "Laascaanood"
+        geocode: [9.7826, 49.7291],
+        popUp: "RakoRaaxo"
     },
     {
-        geocode: [7.986844264313204, 48.10513972752393],
-        popUp: "Kalabayr"
+        geocode: [9.7480, 48.8251],
+        popUp: "Boodacad"
     },
     {
-        geocode: [8.1193610, 47.7568442],
-        popUp: "Karin Gorfood"
+        geocode: [9.4871, 49.0677],
+        popUp: "Village: Aada"
     },
     {
         geocode: [8.518086704762542, 47.39797973706723],

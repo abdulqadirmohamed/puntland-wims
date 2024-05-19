@@ -29,7 +29,7 @@ const WaterSourcesRegions = () => {
         <h1 className='font-meduim'>Water Sources Regions</h1>
       </div>
       <hr className='my-4' />
-      <div className=''>
+      <div className='flex items-center justify-center'>
         <Chart options={options} series={series} type="pie" />
       </div>
     </div>

@@ -39,7 +39,7 @@ const BoreholeTopParameters = () => {
                 <h1 className='font-meduim'>Borehole Top Parameters</h1>
             </div>
             <hr className='my-4' />
-            <div className=''>
+            <div className='max-w-[700px]'>
                 <Chart options={options} series={series} type="area" />
             </div>
         </div >

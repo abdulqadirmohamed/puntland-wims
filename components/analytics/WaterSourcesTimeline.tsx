@@ -58,17 +58,14 @@ const WaterSourcesTimeline = () => {
         }
     })
     const waterStatus = [
-        { title: "Borehole", total: 5 },
-        { title: "dam", total: 20 },
-        { title: "Shallowwell", total: 20 },
-        { title: "Springwell", total: 30 },
+        { title: "Borehole", total: 5 }
     ]
     
  
 
     return (
         <div className='bg-white rounded-xl p-6'>
-            <div className='flex gap-4'>
+            <div className=' gap-4'>
                 <h1>Planed Water sources timeline  </h1>
                 <div className='flex gap-3'>
                     {waterStatus.map((item, index) => (
@@ -80,7 +77,7 @@ const WaterSourcesTimeline = () => {
                 </div>
             </div>
             <hr className='my-4' />
-            <div className=''>
+            <div className='max-w-[700px] mx-auto'>
                 <ReactApexChart type="rangeBar" options={status.option} series={status.series} height={250} />
             </div>
         </div>

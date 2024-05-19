@@ -18,11 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex justify-between bg-[#F2F3F5]`}>
-        <div className="w-1/6 h-full fixed left-0 overflow-y-auto">
-          <Sidebar />
+      <body className={`${inter.className}  bg-[#F2F3F5]`}>
+        <div className="xl:flex hidden">
+          <div className="xl:w-1/6 h-full fixed left-0 overflow-y-auto">
+            <Sidebar />
+          </div>
         </div>
-        <main className="w-5/6 ml-auto">
+        <main className="xl:w-5/6 ml-auto ">
           <div className="mx-8">
             <Header />
           </div>
