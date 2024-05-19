@@ -9,9 +9,16 @@ import {
 import { SideBarItems } from './sidebar/Constant'
 import Link from 'next/link'
 
-
+const getDate = () => {
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const date = today.getDate();
+  return `${month} ${date} ${year}`;
+}
 const Header = () => {
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
+  const [currentDate, setCurrentDate] = useState(getDate());
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,15 +68,15 @@ const Header = () => {
             </span>
             <h1 className='hidden md:flex'>Water Information Management System</h1>
           </div>
-          <div className='flex items-center gap-6 text-sm text-[#838dfd] z-50'>
-            <div className='lg:flex items-center hidden'>
+          <div className='flex items-center gap-6 text-[#838dfd] z-50'>
+            <div className='lg:flex gap-2 items-center hidden border-[1px] border-[#1E2227] px-3 py-2 rounded-md'>
               <span><CalendarDays size={20} /></span>
-              <span>16 May 2024</span>
+              <span className='text-[15px]'>{currentDate}</span>
             </div>
             <Popover>
               <PopoverTrigger className='flex items-center gap-2 cursor-pointer'>
                 <div className='w-8 h-8 bg-white rounded-full flex items-center justify-center font-bold'>A</div>
-                Aisha
+                <span className='text-sm'>Aisha</span>
                 <span><ChevronDown size={15} className='text-white' /></span>
               </PopoverTrigger>
               <PopoverContent className='w-18'>
