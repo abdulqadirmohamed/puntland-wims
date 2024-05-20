@@ -9,16 +9,16 @@ import {
 import { SideBarItems } from './sidebar/Constant'
 import Link from 'next/link'
 
-const getDate = () => {
-  const today = new Date();
-  const month = today.getMonth() + 1;
-  const year = today.getFullYear();
-  const date = today.getDate();
-  return `${month} ${date} ${year}`;
+const dateOpject = new Date()
+const options: Intl.DateTimeFormatOptions = {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
 }
+const formattedDate = dateOpject.toLocaleDateString('en-gb', options)
+
 const Header = () => {
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
-  const [currentDate, setCurrentDate] = useState(getDate());
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,7 +71,7 @@ const Header = () => {
           <div className='flex items-center gap-6 text-[#838dfd] z-50'>
             <div className='lg:flex gap-2 items-center hidden border-[1px] border-[#1E2227] px-3 py-2 rounded-md'>
               <span><CalendarDays size={20} /></span>
-              <span className='text-[15px]'>{currentDate}</span>
+              <span className='text-[15px]'>{formattedDate}</span>
             </div>
             <Popover>
               <PopoverTrigger className='flex items-center gap-2 cursor-pointer'>

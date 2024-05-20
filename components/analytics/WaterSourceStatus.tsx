@@ -1,9 +1,22 @@
 "use client"
-import React, { useState } from 'react'
-import ReactApexChart from 'react-apexcharts';
+import { TData } from '@/types/types';
+import React, { useEffect, useState } from 'react'
 import Chart from "react-apexcharts";
 
 const WaterSourceStatus = () => {
+    const [data, setData] = useState(null)
+    useEffect(() => {
+        fetch('https://664a65bfa300e8795d41dd1c.mockapi.io/waterresource')
+            .then((res) => res.json())
+            .then((data) => {
+                setData(data)
+                console.log(data)
+            }).catch(rejected => {
+                console.log(rejected);
+            });
+    }, [])
+
+  
 
     const waterStatus = [
         { title: "Borehole", total: 5 },
@@ -18,7 +31,7 @@ const WaterSourceStatus = () => {
         legend: {
             position: 'bottom'
         },
-        
+
         colors: ["#FDB515", "#15229C", "#2ED325", "#FC300A"],
         plotOptions: {
             bar: {
@@ -43,7 +56,7 @@ const WaterSourceStatus = () => {
             </div>
             <hr className='my-4' />
             <div className='max-w-[700px]'>
-                <ReactApexChart type="donut" options={option} series={series} height={300} />
+                <Chart type="donut" options={option} series={series} height={300} />
             </div>
         </div>
     )
