@@ -8,23 +8,11 @@ import VillageWaterSourceStatus from "@/components/analytics/VillageWaterSourceS
 import WaterSourceStatus from "@/components/analytics/WaterSourceStatus";
 import WaterSourcesRegions from "@/components/analytics/WaterSourcesRegions";
 import WaterSourcesTimeline from "@/components/analytics/WaterSourcesTimeline";
-import { TData } from "@/types/types";
-import Image from "next/image";
 
 
 
 
-async function getData(): Promise<TData[]> {
-  const res = await fetch('https://664a65bfa300e8795d41dd1c.mockapi.io/waterresource', {
-    cache: 'no-cache'
-  })
-  const data = await res.json()
-  return data;
-}
-
-export default async function Home() {
-  const data = await getData()
-  console.log(data)
+export default  function Home() {
   return (
     <main>
       <Summery />

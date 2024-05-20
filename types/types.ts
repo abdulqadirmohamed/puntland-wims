@@ -6,11 +6,44 @@ export type TSideBarItems = {
     subMenuItems?: TSideBarItems[]
 }
 
-export type TData = {
-    id: string
+export interface WaterResource {
+    id: string;
     name: string
     w_status: string
     water_total: number
-    created_at: string
-    data: TData[]
-  }
+}
+
+// Define the types for the chart options and series
+export interface ChartOptions {
+    chart: {
+        id: string;
+    };
+    legend: {
+        position: string;
+    };
+    xaxis: {
+        categories: string[];
+        title: {
+            text: string;
+        };
+    };
+    yaxis: {
+        title: {
+            text: string;
+        };
+    };
+    title: {
+        text: string;
+    };
+}
+
+export interface ChartSeries {
+    name: string;
+    data: number[];
+}
+
+// Define the state type
+export interface ChartData {
+    options: ChartOptions;
+    series: ChartSeries[];
+}

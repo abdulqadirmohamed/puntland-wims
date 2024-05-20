@@ -1,49 +1,37 @@
 "use client"
-
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
-
-interface WaterResource {
-    id: string;
-    name: string
-    w_status: string
-    water_total: number
+interface DonutChartProps {
+    apiEndpoint: string;
 }
+const WaterSourceStatus: React.FC<DonutChartProps> = ({ apiEndpoint }) => {
+    const [chartData, setChartData] = useState<number[]>([]);
 
-const WaterSourceStatus = () => {
-    const [chartData, setChartData] = useState({ options: {}, series: [] });
-
-    // Fetch data from the API
     useEffect(() => {
-        // Fetch data from the API
-        fetch('https://664a65bfa300e8795d41dd1c.mockapi.io/waterresource')
-            .then(res => res.json())
-            .then((json: WaterResource[]) => {
-                // Transform the data to match the required format for the chart
-                const transformedData = {
-                    options: {
-                        chart: { id: 'apexchart-example' },
-                        legend: { position: 'bottom' },
-                        xaxis: {
-                            categories: json.map(item => item.id) // Assuming 'id' is the label for the x-axis
-                        }
-                    },
-                    series: [
-                        {
-                            name: 'Water Total',
-                            data: json.map(item => item.water_total)
-                        }
-                    ]
-                };
-                // Update the state with the transformed data
-                setChartData(transformedData);
-            })
-            .catch(rejected => {
-                console.log(rejected);
-            });
-    }, []);
+        const fetchData = async () => {
+            try {
+                const response = await fetch('https://664a65bfa300e8795d41dd1c.mockapi.io/waterresource');
+                const data = await response.json();
+                setChartData(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                
+            }
+        };
 
+        fetchData();
+    }, [apiEndpoint]);
+
+    console.log(chartData)
+    const chartOptions = {
+        chart: {
+            type: 'donut',
+        },
+        labels: ['Planned', 'Functional', 'Non Functional', 'Completed'],
+        colors: ['#008FFB', '#00E396', '#FEB019', '#FF4560'],
+    };
 
     const waterStatus = [
         { title: "Borehole", total: 5 },
@@ -52,8 +40,6 @@ const WaterSourceStatus = () => {
         { title: "Springwell", total: 30 },
     ]
 
-    // }
-    // const series = [13, 34, 18, 20]; //our data
     return (
         <div className='bg-white rounded-xl p-6'>
             <div className='flex flex-col xl:flex-row gap-4'>
@@ -69,11 +55,12 @@ const WaterSourceStatus = () => {
             </div>
             <hr className='my-4' />
             <div className='max-w-[700px]'>
+
                 <Chart
-                    options={chartData.options}
-                    series={chartData.series}
-                    type="line" // You can change this to the type of chart you want (e.g., 'bar', 'line', 'area')
-                    height={350} // Adjust height as necessary
+                    options={chartOptions}
+                    series={chartData}
+                    type="donut"
+                    width="380"
                 />
 
             </div>
