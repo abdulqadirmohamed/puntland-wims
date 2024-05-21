@@ -13,43 +13,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model well {
-  id            Int      @id @default(autoincrement())
-  name          String
-  type          String
-  use_type      String
-  start_date    DateTime
-  expected_date DateTime
-  location      String
-  status        String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-}
-
-model region {
-  id         Int      @id @default(autoincrement())
-  name       String
-  population String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-}
-
-model districts {
+model Well {
   id                    Int      @id @default(autoincrement())
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
   name                  String
-  population            String
+  type                  String
+  use_type              String
+  start_date            DateTime
+  expected_date         DateTime
+  location              String
+  status                String
+  population            Int
   average_ph            Int
   average_conductivity  Int
   average_price         Int
   Percent_of_village_ws Float
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
+  district              District @relation(fields: [districtId], references: [id])
+  districtId            Int
+  village               Village  @relation(fields: [villageId], references: [id])
+  villageId             Int
+  region                Region   @relation(fields: [regionId], references: [id])
+  regionId              Int
 }
 
-model village {
+model Village {
   id         Int      @id @default(autoincrement())
   name       String
-  population String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  district   District @relation(fields: [districtId], references: [id])
+  districtId Int
+
+  Well Well[]
+}
+
+model District {
+  id               Int       @id @default(autoincrement())
+  name             String
+  water_connection Boolean
+  region           Region    @relation(fields: [regionId], references: [id])
+  regionId         Int
+  Well             Well[]
+  Village          Village[]
+}
+
+model Region {
+  id       Int        @id @default(autoincrement())
+  name     String
+  Well     Well[]
+  District District[]
 }
