@@ -1,37 +1,62 @@
 "use client"
-import { useEffect, useState } from "react";
+import axios from "axios";
+import { error } from "console";
+import { use, useEffect, useState } from "react";
 import Chart from "react-apexcharts";
+import ReactApexChart from 'react-apexcharts';
 
-interface DonutChartProps {
-    apiEndpoint: string;
-}
-const WaterSourceStatus: React.FC<DonutChartProps> = ({ apiEndpoint }) => {
-    const [chartData, setChartData] = useState<number[]>([]);
+const WaterSourceStatus = () => {
+    const [options, setObject] = useState({
+        chart: {
+            id: 'apexchart-example'
+        },
+        xaxis: {
+           
+            category: []
+        },
+    })
+    const [series, setSeries] = useState([{
+        name: 'series 1',
+        data: []
+    }])
+
+
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('https://664a65bfa300e8795d41dd1c.mockapi.io/waterresource');
-                const data = await response.json();
-                setChartData(data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                
-            }
-        };
+        // @ts-ignore
+        const age = []; // @ts-ignore
+        const salary = [];
+        axios.get("https://dummy.restapiexample.com/api/v1/employees").then(response => {
+            console.log("response", response)
+            // @ts-ignore
+            response.data.data.map(item => {
+                console.log("item", item)
+                age.push(item.employee_age);
+                salary.push(item.employee_salary)
+            })
+            setObject({
+                chart: {
+                    id: 'apexchart-example'
+                },
+                xaxis: {
+                    // @ts-ignore
+                    categories: salary
+                },
+            })
+            setSeries([{
+                name: 'Age',
+                // @ts-ignore
+                data: age
+            }])
 
-        fetchData();
-    }, [apiEndpoint]);
+            // @ts-ignore
+            console.log(age, salary)
+        }).catch(error => {
+            console.log(error)
+        })
 
-    console.log(chartData)
-    const chartOptions = {
-        chart: {
-            type: 'donut',
-        },
-        labels: ['Planned', 'Functional', 'Non Functional', 'Completed'],
-        colors: ['#008FFB', '#00E396', '#FEB019', '#FF4560'],
-    };
+    }, [])
+
 
     const waterStatus = [
         { title: "Borehole", total: 5 },
@@ -39,7 +64,6 @@ const WaterSourceStatus: React.FC<DonutChartProps> = ({ apiEndpoint }) => {
         { title: "Shallowwell", total: 20 },
         { title: "Springwell", total: 30 },
     ]
-
     return (
         <div className='bg-white rounded-xl p-6'>
             <div className='flex flex-col xl:flex-row gap-4'>
@@ -55,13 +79,7 @@ const WaterSourceStatus: React.FC<DonutChartProps> = ({ apiEndpoint }) => {
             </div>
             <hr className='my-4' />
             <div className='max-w-[700px]'>
-
-                <Chart
-                    options={chartOptions}
-                    series={chartData}
-                    type="donut"
-                    width="380"
-                />
+                <ReactApexChart options={options} series={series} type="line" height={350} />
 
             </div>
         </div>

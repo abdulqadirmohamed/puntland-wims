@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model well {
+  id            Int      @id @default(autoincrement())
+  name          String
+  type          String
+  use_type      String
+  start_date    DateTime
+  expected_date DateTime
+  location      String
+  status        String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model region {
+  id         Int      @id @default(autoincrement())
+  name       String
+  population String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model districts {
+  id                    Int      @id @default(autoincrement())
+  name                  String
+  population            String
+  average_ph            Int
+  average_conductivity  Int
+  average_price         Int
+  Percent_of_village_ws Float
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model village {
+  id         Int      @id @default(autoincrement())
+  name       String
+  population String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
