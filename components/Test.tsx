@@ -1,75 +1,63 @@
 "use client"
-
-import { ChartData, WaterResource } from '@/types/types';
-import React, { useEffect, useState } from 'react'
+import axios from "axios";
+import { error } from "console";
+import { use, useEffect, useState } from "react";
 import Chart from "react-apexcharts";
-
-
-
+import ReactApexChart from 'react-apexcharts';
 
 const WaterSourceStatus = () => {
-    const [chartData, setChartData] = useState<ChartData>({
-        options: {
-            chart: { id: 'apexchart-example' },
-            legend: { position: 'bottom' },
-            xaxis: {
-                categories: [],
-                title: {
-                    text: 'Resource ID' // Label for the x-axis
-                }
-            },
-            yaxis: {
-                title: {
-                    text: 'Water Total' // Label for the y-axis
-                }
-            },
-            title: {
-                text: 'Water Resource Status' // Chart title
-            }
+    const [options, setObject] = useState({
+        chart: {
+            id: 'apexchart-example'
         },
-        series: []
-    });
+        xaxis: {
+           
+            category: []
+        },
+    })
+    
+    const [series, setSeries] = useState([{
+        name: 'series 1',
+        data: []
+    }])
+
+
 
     useEffect(() => {
-        // Fetch data from the API
-        fetch('https://664a65bfa300e8795d41dd1c.mockapi.io/waterresource')
-            .then(res => res.json())
-            .then((json: WaterResource[]) => {
-                // Transform the data to match the required format for the chart
-                const transformedData: ChartData = {
-                    options: {
-                        chart: { id: 'apexchart-example' },
-                        legend: { position: 'bottom' },
-                        xaxis: {
-                            categories: json.map(item => item.id),
-                            title: {
-                                text: 'Resource ID'
-                            }
-                        },
-                        yaxis: {
-                            title: {
-                                text: 'Water Total'
-                            }
-                        },
-                        title: {
-                            text: 'Water Resource Status'
-                        }
-                    },
-                    series: [
-                        {
-                            name: 'Water Total',
-                            data: json.map(item => item.water_total)
-                        }
-                    ]
-                };
-
-                // Update the state with the transformed data
-                setChartData(transformedData);
+        // @ts-ignore
+        const age = []; // @ts-ignore
+        const salary = [];
+        axios.get("https://dummy.restapiexample.com/api/v1/employees").then(response => {
+            console.log("response", response)
+            // @ts-ignore
+            response.data.data.map(item => {
+                console.log("item", item)
+                age.push(item.employee_age);
+                salary.push(item.employee_salary)
             })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-    }, []);
+            setObject({
+                chart: {
+                    id: 'apexchart-example'
+                },
+                xaxis: {
+                    // @ts-ignore
+                    categories: salary
+                },
+            })
+            setSeries([{
+                name: 'Age',
+                // @ts-ignore
+                data: age
+            }])
+
+            // @ts-ignore
+            console.log(age, salary)
+        }).catch(error => {
+            console.log(error)
+        })
+
+    }, [])
+
 
     const waterStatus = [
         { title: "Borehole", total: 5 },
@@ -77,9 +65,6 @@ const WaterSourceStatus = () => {
         { title: "Shallowwell", total: 20 },
         { title: "Springwell", total: 30 },
     ]
-
-    // }
-    // const series = [13, 34, 18, 20]; //our data
     return (
         <div className='bg-white rounded-xl p-6'>
             <div className='flex flex-col xl:flex-row gap-4'>
@@ -95,12 +80,7 @@ const WaterSourceStatus = () => {
             </div>
             <hr className='my-4' />
             <div className='max-w-[700px]'>
-                <Chart
-                    options={chartData.options}
-                    series={chartData.series}
-                    type="line" // You can change this to the type of chart you want (e.g., 'bar', 'line', 'area')
-                    height={350} // Adjust height as necessary
-                />
+                <ReactApexChart options={options} series={series} type="line" height={350} />
 
             </div>
         </div>

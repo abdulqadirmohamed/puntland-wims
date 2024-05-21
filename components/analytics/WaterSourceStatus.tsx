@@ -10,53 +10,38 @@ const WaterSourceStatus = () => {
         chart: {
             id: 'apexchart-example'
         },
-        xaxis: {
-           
-            category: []
+        legend: {
+            position: 'bottom'
         },
+        labels: [],
+
     })
-    const [series, setSeries] = useState([{
-        name: 'series 1',
-        data: []
-    }])
-
-
+    const [series, setSeries] = useState([])
 
     useEffect(() => {
         // @ts-ignore
-        const age = []; // @ts-ignore
-        const salary = [];
-        axios.get("https://dummy.restapiexample.com/api/v1/employees").then(response => {
+        const status = []; // @ts-ignore
+        axios.get("http://localhost:3000/api/well").then(response => {
             console.log("response", response)
             // @ts-ignore
-            response.data.data.map(item => {
+            response.data.map(item => {
                 console.log("item", item)
-                age.push(item.employee_age);
-                salary.push(item.employee_salary)
+                status.push(item.status);
             })
-            setObject({
-                chart: {
-                    id: 'apexchart-example'
-                },
-                xaxis: {
-                    // @ts-ignore
-                    categories: salary
-                },
-            })
-            setSeries([{
-                name: 'Age',
-                // @ts-ignore
-                data: age
-            }])
-
             // @ts-ignore
-            console.log(age, salary)
+            setObject([{
+                // @ts-ignore
+                labels: status
+            }])
+            // @ts-ignore
+            setSeries(status)
+            // @ts-ignore
+            console.log('status data', status)
         }).catch(error => {
             console.log(error)
         })
 
     }, [])
-
 
     const waterStatus = [
         { title: "Borehole", total: 5 },
@@ -79,7 +64,7 @@ const WaterSourceStatus = () => {
             </div>
             <hr className='my-4' />
             <div className='max-w-[700px]'>
-                <ReactApexChart options={options} series={series} type="line" height={350} />
+                <ReactApexChart options={options} series={series} type="donut" height={350} />
 
             </div>
         </div>

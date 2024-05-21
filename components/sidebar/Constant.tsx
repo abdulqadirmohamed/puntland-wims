@@ -25,7 +25,7 @@ export const SideBarItems: TSideBarItems[] = [
     },
     {
         title: "Water sources",
-        path: "/water-sources",
+        path: "/water-source",
         icon: <Droplet size={20}/>,
     },
     {
