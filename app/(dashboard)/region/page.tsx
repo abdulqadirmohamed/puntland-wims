@@ -13,7 +13,7 @@ export default async function page() {
   const data = await getUsers()
   return (
     <div className='bg-white rounded-md p-5'>
-      <h1>Water sources <span className='bg-blue-600 text-white px-3 py-[2px] rounded-lg'>{data.length}</span></h1>
+      <h1>Regions <span className='bg-blue-600 text-white px-3 py-[2px] rounded-lg'>{data.length}</span></h1>
       <DataTable columns={columns} data={data} />
     </div>
   )
