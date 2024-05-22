@@ -29,6 +29,9 @@ const RegionalAverages = () => {
             },
             zoom: {
                 enabled: true
+            },
+            label: {
+                rotate: -45
             }
 
         }

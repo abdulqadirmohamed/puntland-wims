@@ -6,7 +6,7 @@ import RegionalAverages from "@/components/analytics/RegionalAverages";
 import Summery from "@/components/analytics/Summery";
 import VillageWaterSourceStatus from "@/components/analytics/VillageWaterSourceStatus";
 import WaterSourcesRegions from "@/components/analytics/WaterSourcesRegions";
-import WaterSourcesTimeline from "@/components/analytics/WaterSourcesTimeline";
+import WaterSourcesTimeline from "@/components/analytics/plannedWater/WaterSourcesTimeline";
 import StatusPage from "@/components/analytics/donutchart/StatusDonutChart";
 import WaterSourceStatus from "@/components/analytics/donutchart/WaterSourceStatus";
 
