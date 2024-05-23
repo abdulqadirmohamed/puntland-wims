@@ -1,53 +1,39 @@
 'use client'
-import { useState, useEffect } from 'react'
-import dynamic from 'next/dynamic'
-import axios from 'axios'
-import { Well } from '@prisma/client'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import RadialBarChart from './RadialBarChart';
 
-const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
+interface PhData {
+  minPh: number;
+  maxPh: number;
+}
 
-const Home = () => {
-  const [wells, setWells] = useState<Well[]>([])
-  const [combinedPh, setCombinedPh] = useState<number | null>(null)
+const Home: React.FC = () => {
+  const [phData, setPhData] = useState<PhData | null>(null);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/ph_avarage')
-      .then(response => {
-        const wellsData = response.data
-        setWells(wellsData)
-        const phValues = wellsData.map((well: Well) => well.average_ph).filter((ph: number | null) => ph !== null) as number[]
-        const sumPh = phValues.reduce((acc, ph) => acc + ph, 0)
-        setCombinedPh(sumPh)
-      })
-  }, [])
+    const fetchData = async () => {
+      try {
+        const res = await axios.get('http://localhost:3000/api/ph_avarage');
+        setPhData(res.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-  const phData = wells.reduce((acc: { [key: string]: number }, well) => {
-    if (well.average_ph !== null) {
-      acc[well.name] = well.average_ph
-    }
-    return acc
-  }, {})
-
-  const chartData = {
-    series: Object.values(phData),
-    labels: Object.keys(phData),
-    chartOptions: {
-      labels: Object.keys(phData)
-    }
-  }
+    fetchData();
+  }, []);
 
   return (
     <div>
-      <h1>Well pH Data</h1>
-      <p>Combined pH of all wells: {combinedPh}</p>
-      <Chart
-        options={chartData.chartOptions}
-        series={chartData.series}
-        type="radialBar"
-        width="500"
-      />
+      <h1>pH Range of Wells</h1>
+      {phData ? (
+        <RadialBarChart minPh={phData.minPh} maxPh={phData.maxPh} />
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
