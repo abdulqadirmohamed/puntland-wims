@@ -30,7 +30,7 @@ const WaterSourcesTimeline = () => {
   return (
     <div className='bg-white rounded-xl p-6'>
       <div className='flex flex-col xl:flex-row gap-4'>
-        <h1>Water source status  </h1>
+        <h1>Planed Water sources timeline</h1>
         <div className='flex flex-wrap gap-1'>
           {waterStatus.map((item, index) => (
             <div className='bg-[#0D6EFD] text-white flex gap-2 items-center rounded-md py-[2px] px-[6px]' key={index}>

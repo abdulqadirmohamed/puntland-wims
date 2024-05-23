@@ -18,22 +18,25 @@ model Well {
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
   name                  String
-  type                  String?
-  use_type              String?
-  start_date            DateTime?
-  expected_date         DateTime?
-  location              String?
-  status                String?
-  average_ph            Int?
-  average_conductivity  Int?
-  average_price         Int?
-  Percent_of_village_ws Float?
   district              District  @relation(fields: [districtId], references: [id])
   districtId            Int
   village               Village   @relation(fields: [villageId], references: [id])
   villageId             Int
   region                Region    @relation(fields: [regionId], references: [id])
   regionId              Int
+  type                  String?
+  use_type              String?
+  start_date            DateTime?
+  expected_date         DateTime?
+  location              String?
+  status                String?
+  average_ph            Float?
+  average_conductivity  Float?
+  average_price         Float?
+  Percent_of_village_ws Float?
+  yield                 String?
+  dynamic_water_level   Float?
+  static_level          Float?
 }
 
 model Village {

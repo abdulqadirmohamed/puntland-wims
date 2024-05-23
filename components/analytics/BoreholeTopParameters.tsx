@@ -6,7 +6,7 @@ import Chart from "react-apexcharts";
 const BoreholeTopParameters = () => {
     const options = {
         xaxis: {
-            categories: ["Bari", "Nugaal", "Mudug", "Sool", "Sanaag"]
+            categories: ["Bari", "Mudug", "Nugaal", "Sanaag", "Sool"]
         },
         legend: {
             position: 'top',
@@ -16,21 +16,25 @@ const BoreholeTopParameters = () => {
                 show: false
             },
         },
+        colors: ['#2DB6F5', '#F765A3', '#757FEF'],
+        stroke: {
+            width: [3, 3, 3]
+        },
 
     };
 
     const series = [
         {
             name: "PH-Yeild",
-            data: [30, 40, 25, 50, 49]
+            data: [12, 40, 25, 0, 0]
         },
         {
             name: "BH Static Level",
-            data: [23, 12, 54, 61, 32]
+            data: [380, 120, 244, 0, 0]
         },
         {
             name: "BH Dynamic Water Level",
-            data: [24, 20, 5, 75, 42]
+            data: [24, 0, 5, 0, 0]
         }
     ];
     return (
@@ -40,7 +44,7 @@ const BoreholeTopParameters = () => {
             </div>
             <hr className='my-4' />
             <div className='max-w-[700px]'>
-                <Chart options={options} series={series} type="area" />
+                <Chart options={options} series={series} type="line" />
             </div>
         </div >
     )
