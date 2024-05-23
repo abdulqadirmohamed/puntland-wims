@@ -1,9 +1,7 @@
-// components/RadialBarChart.tsx
+
 import React from 'react';
-import dynamic from 'next/dynamic';
 import { ApexOptions } from 'apexcharts';
 
-// const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 import Chart from 'react-apexcharts'
 
 interface RadialBarChartProps {
@@ -30,7 +28,8 @@ const RadialBarChart: React.FC<RadialBarChartProps> = ({ minPh, maxPh }) => {
     labels: ['Min pH', 'Max pH'],
   };
 
-  const series = [minPh, maxPh];
+  // const series = [minPh, maxPh];
+  const series = [maxPh];
 
   return (
     <div>

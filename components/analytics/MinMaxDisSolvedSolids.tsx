@@ -25,7 +25,7 @@ const MinMaxDisSolvedSolids = () => {
   return (
     <div className='bg-white rounded-xl p-6' >
       <div className='flex gap-4'>
-        <h1 className='font-meduim'>Min/Max for ph</h1>
+        <h1 className='font-meduim'>Min/Max for dissolvedsolids</h1>
       </div>
       <hr className='my-4' />
       <div className='flex justify-between items-center mx-6 font-medium'>
