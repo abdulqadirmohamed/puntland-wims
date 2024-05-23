@@ -80,7 +80,7 @@ const Header = () => {
                 <span><ChevronDown size={15} className='text-white' /></span>
               </PopoverTrigger>
               <PopoverContent className='w-18'>
-                <button>Login</button>
+                <Link href={'http://localhost:3000/auth/sign-in'}>Login</Link>
               </PopoverContent>
             </Popover>
           </div>
