@@ -8,6 +8,8 @@ import {
 } from "@/components/ui/popover"
 import { SideBarItems } from './sidebar/Constant'
 import Link from 'next/link'
+import { useSession, signOut } from "next-auth/react";
+import { Button } from './ui/button'
 
 const dateOpject = new Date()
 const options: Intl.DateTimeFormatOptions = {
@@ -18,6 +20,8 @@ const options: Intl.DateTimeFormatOptions = {
 const formattedDate = dateOpject.toLocaleDateString('en-gb', options)
 
 const Header = () => {
+  const { status, data: session } = useSession();
+
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
 
   useEffect(() => {
@@ -75,12 +79,14 @@ const Header = () => {
             </div>
             <Popover>
               <PopoverTrigger className='flex items-center gap-2 cursor-pointer'>
-                <div className='w-8 h-8 bg-white rounded-full flex items-center justify-center font-bold'>A</div>
-                <span className='text-sm'>Aisha</span>
+                <div className='w-8 h-8 bg-white rounded-full flex items-center justify-center font-bold uppercase'>
+                  {session?.user?.email?.charAt(0)}
+                </div>
+                <span className='text-sm'>{session?.user?.name}</span>
                 <span><ChevronDown size={15} className='text-white' /></span>
               </PopoverTrigger>
               <PopoverContent className='w-18'>
-                <Link href={'http://localhost:3000/auth/sign-in'}>Login</Link>
+                <button onClick={()=> signOut()}>Logout</button>
               </PopoverContent>
             </Popover>
           </div>

@@ -8,12 +8,11 @@ import VillageWaterSourceStatus from "@/components/analytics/VillageWaterSourceS
 import WaterSourcesRegions from "@/components/analytics/waterSourcesRegions/WaterSourcesRegions";
 import WaterSourcesTimeline from "@/components/analytics/plannedWater/WaterSourcesTimeline";
 import StatusPage from "@/components/analytics/donutchart/StatusDonutChart";
-import WaterSourceStatus from "@/components/analytics/donutchart/WaterSourceStatus";
 
 
 
 
-export default function Home() {
+export default function  Home() {
   return (
     <main>
       <Summery />
