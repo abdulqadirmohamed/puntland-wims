@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/popover"
 import { SideBarItems } from './sidebar/Constant'
 import Link from 'next/link'
-import { useSession, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from './ui/button'
 
 const dateOpject = new Date()
@@ -20,7 +20,7 @@ const options: Intl.DateTimeFormatOptions = {
 const formattedDate = dateOpject.toLocaleDateString('en-gb', options)
 
 const Header = () => {
-  const { status, data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
 
@@ -82,11 +82,11 @@ const Header = () => {
                 <div className='w-8 h-8 bg-white rounded-full flex items-center justify-center font-bold uppercase'>
                   {session?.user?.email?.charAt(0)}
                 </div>
-                <span className='text-sm'>{session?.user?.name}</span>
+                <span className='text-sm capitalize'>{session?.user?.name}</span>
                 <span><ChevronDown size={15} className='text-white' /></span>
               </PopoverTrigger>
               <PopoverContent className='w-18'>
-                <button onClick={()=> signOut()}>Logout</button>
+                <button onClick={() => signOut()}>Logout</button>
               </PopoverContent>
             </Popover>
           </div>

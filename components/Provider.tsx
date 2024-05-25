@@ -6,8 +6,3 @@ export const NextAuthProvider = ({children,}:{children: React.ReactNode;}) =>{
         {children}
     </SessionProvider>
 }
-
-
-// export const NextAuddthProvider = ({ children, }: { children: React.ReactNode; }) => {
-//     return <SessionProvider>{children}</SessionProvider>;
-// };
