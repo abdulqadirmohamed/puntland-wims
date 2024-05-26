@@ -20,5 +20,5 @@ export const config = {
     '/watersource',
     '/map',
     '/Administration',
-  ], // Adjust this pattern to match your protected routes
+  ],
 };
