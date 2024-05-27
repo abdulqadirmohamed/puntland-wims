@@ -41,7 +41,7 @@ const markers = [
     },
 ];
 
-const TestMap = () => {
+const WellsMap = () => {
     useEffect(() => {
         if (typeof window !== 'undefined') {
             require('leaflet');
@@ -54,7 +54,7 @@ const TestMap = () => {
                 <h5>Map</h5>
                 <span>30</span>
             </div>
-            <div className='my-5'>
+            <div className='my-5 -z-40'>
                 <MapContainer
                     center={[8.3676771, 49.083416]}
                     scrollWheelZoom={true}
@@ -79,4 +79,4 @@ const TestMap = () => {
     )
 }
 
-export default TestMap
+export default WellsMap

@@ -4,6 +4,7 @@ import "../globals.css";
 import Sidebar from "@/components/sidebar/Sidebar";
 import Header from "@/components/Header";
 import { NextAuthProvider } from "@/components/Provider";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,6 +33,7 @@ export default function RootLayout({
             </div>
             <div className="my-4 mx-8">
               {children}
+              <Toaster />
             </div>
           </main>
         </NextAuthProvider>

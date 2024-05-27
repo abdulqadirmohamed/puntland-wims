@@ -12,7 +12,7 @@ import {
   getFilteredRowModel,
   VisibilityState,
 } from "@tanstack/react-table"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+
 import {
   Table,
   TableBody,
@@ -31,7 +31,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Plus, SlidersHorizontal } from "lucide-react"
-import AddRegion from "./AddRegion"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import AddRegion from "../../region/_components/AddRegion"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -69,16 +70,18 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex justify-between items-center py-4">
-        <div className="flex items-center gap-6">
+      <div className="flex items-center justify-between py-4">
+        <div className="flex gap-5">
           <Input
-            placeholder="Filter region..."
+            placeholder="Search village..."
             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
               table.getColumn("name")?.setFilterValue(event.target.value)
             }
             className="max-w-sm"
           />
+
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto flex items-center gap-2">
@@ -107,10 +110,9 @@ export function DataTable<TData, TValue>({
                   )
                 })}
             </DropdownMenuContent>
-
           </DropdownMenu>
         </div>
-  
+        <div>
           <Dialog>
             <DialogTrigger>
               <span className="bg-blue-600 px-4 py-2 rounded-md text-white ml-auto flex items-center gap-2">
@@ -126,6 +128,7 @@ export function DataTable<TData, TValue>({
               </DialogHeader>
             </DialogContent>
           </Dialog>
+        </div>
       </div>
 
       <div className="rounded-md border capitalize">

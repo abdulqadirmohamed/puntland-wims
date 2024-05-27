@@ -7,6 +7,7 @@ export async function GET() {
         const villages = await prisma.village.findMany({
             include: {
               Well: true,
+              district: true,
               Region: true,
             },
         })
