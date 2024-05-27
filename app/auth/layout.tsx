@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "../globals.css";
+import { ToastBar, Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: 'Authentication',
@@ -15,7 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`bg-[#F5F5F5]`}>{children}</body>
+      <body className={`bg-[#F5F5F5]`}>
+        {children}
+        <Toaster/>
+      </body>
     </html>
   )
 }

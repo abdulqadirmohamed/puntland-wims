@@ -10,6 +10,7 @@ import { signIn } from "next-auth/react";
 
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from "yup";
+import toast from 'react-hot-toast'
 
 interface MyFormValues {
     email: string;
@@ -43,7 +44,6 @@ const LoginForm = () => {
 
         try {
             setFormValues({ email: "", password: "" });
-
             const res = await signIn("credentials", {
                 redirect: false,
                 email: formValues.email,
@@ -52,10 +52,9 @@ const LoginForm = () => {
             });
 
             if (res?.error) {
-                console.log(res.error)
+                toast.error('Email and password are required')
             } else {
-                console.log(res)
-                setError("invalid email or password");
+
                 router.push(callbackUrl);
                 router.refresh()
             }
@@ -83,7 +82,7 @@ const LoginForm = () => {
                 {/* validationSchema={validationSchema} */}
                 <Formik
                     initialValues={initialValues}
-                    
+
                     onSubmit={(values, actions) => {
                         console.log(values);
                         // PerFormik any additional actions here
@@ -123,7 +122,7 @@ const LoginForm = () => {
                                 </div>
                             </div>
                             <div className='my-3'>
-                                <Button type="submit"  className='w-full bg-[#757FEF] py-6'>Login</Button>
+                                <Button type="submit" className='w-full bg-[#757FEF] py-6'>Login</Button>
                                 {/* <Button type="submit" disabled={!isValid || !dirty || isSubmitting} className='w-full bg-[#757FEF] py-6'>Login</Button> */}
                             </div>
                         </Form>

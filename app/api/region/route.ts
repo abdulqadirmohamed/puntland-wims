@@ -10,7 +10,7 @@ export async function GET() {
             include: {
                 District: { select: { name: true } },
                 Village: { select: { name: true } },
-                Well: { select: { name: true } },
+                Well: true,
             },
 
             // orderBy: { createdAt: "asc" },
