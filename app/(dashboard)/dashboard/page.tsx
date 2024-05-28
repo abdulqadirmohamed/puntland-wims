@@ -4,6 +4,9 @@ import Barchart from './_components/Barchart'
 import WellsMap from '../map/_components/WellsMap'
 import MapSO from './_components/MapSO'
 import dynamic from 'next/dynamic'
+import WaterSourcesTimeline from '@/components/analytics/plannedWater/WaterSourcesTimeline'
+import FWaterSTimeline from './_components/FWaterSTimeline'
+import FWaterSourceStatus from './_components/FWaterSourceStatus'
 // const Map = dynamic(() => import('../components/Map'), { ssr: false });
 
 
@@ -38,12 +41,9 @@ const page = () => {
           </div>
           {/* charts */}
           <div className='grid grid-cols-3 gap-3 my-6 h-fit'>
-            <div className='border-gray-400 border-[1px] p-4'><Barchart/></div>
-            <div className='border-gray-400 border-[1px] p-4'><Barchart/></div>
-            <div className='border-gray-400 border-[1px] p-4'><Barchart/></div>
-            <div className='border-gray-400 border-[1px] p-4'><Barchart/></div>
-            <div className='border-gray-400 border-[1px] p-4'><Barchart/></div>
-            <div className='border-gray-400 border-[1px] p-4'><Barchart/></div>
+            <div className='border-gray-300 border-[1px] rounded-md'><Barchart/></div>
+            <div className='border-gray-300 border-[1px] rounded-md'><FWaterSTimeline/></div>
+            <div className='border-gray-300 border-[1px] rounded-md'><FWaterSourceStatus/></div>
           </div>
         </div>
       </div>

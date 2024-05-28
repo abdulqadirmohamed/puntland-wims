@@ -3,37 +3,25 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
-    const { region, district, village } = req.query;
+    const { regionName} = req.query;
     try {
-        const filter: any = {
+        const filters: any = {};
+
+        if (regionName) {
+            filters.region = { name: regionName };
+        }
+        const wells = await prisma.well.findMany({
             where: {
-                name: region as string
+                ...filters,
             },
             include: {
-                District: false,
-                Village: false,
-                Well: false
-            }
-        };
+                region: true,
+                district: true,
+                village: true,
+            },
+        });
 
-        if (district) {
-            filter.where.District = {
-                some: {
-                    name: district as string
-                }
-            };
-        }
-
-        if (village) {
-            filter.where.Village = {
-                some: {
-                    name: village as string
-                }
-            };
-        }
-
-        const regions = await prisma.region.findMany(filter);
-        return NextResponse.json(regions);
+        return NextResponse.json(wells)
     } catch (error) {
         console.log(error);
         return NextResponse.json(error);
