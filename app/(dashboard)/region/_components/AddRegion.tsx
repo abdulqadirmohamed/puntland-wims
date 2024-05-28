@@ -54,7 +54,7 @@ const AddRegion = () => {
       <form action="" onSubmit={handleSubmit}>
         <div>
           <Input type='text' placeholder='Enter region name'
-            onChange={(e) => setName(e.target.value)} />
+            onChange={(e) => setName(e.target.value)} required />
         </div>
         <div className='flex flex-row my-4'>
           <Button className="ml-auto flex items-center gap-2 bg-blue-600 text-white">

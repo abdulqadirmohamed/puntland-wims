@@ -83,11 +83,10 @@ export const columns: ColumnDef<TWell>[] = [
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(payment.id)}
             >
-              Copy payment ID
+              Delete
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>Update</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

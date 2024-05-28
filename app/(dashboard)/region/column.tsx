@@ -12,11 +12,12 @@ import {
 import { MoreHorizontal, ArrowUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
+import DeleteBtn from "./_components/DeleteBtn"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type TRegion = {
-  id: string
+  id: number
   name: string
   District: []
   Village: []
@@ -54,7 +55,8 @@ export const columns: ColumnDef<TRegion>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original
+      const region = row.original
+      console.log(region.id)
 
       return (
         <DropdownMenu>
@@ -66,14 +68,11 @@ export const columns: ColumnDef<TRegion>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem>
+              <DeleteBtn id={region.id}/>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

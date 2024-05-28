@@ -12,11 +12,12 @@ import {
 import { MoreHorizontal, ArrowUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
+import DeleteDistrict from "./_components/DeleteDistrict"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type TWell = {
-  id: string
+  id: number
   name: string
   region: []
   District: []
@@ -81,7 +82,7 @@ export const columns: ColumnDef<TWell>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original
+      const district = row.original
 
       return (
         <DropdownMenu>
@@ -93,8 +94,11 @@ export const columns: ColumnDef<TWell>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>Update</DropdownMenuItem>
-            <DropdownMenuItem>Delete</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem>
+              <DeleteDistrict id={district.id}/>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

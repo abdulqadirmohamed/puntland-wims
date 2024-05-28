@@ -113,9 +113,9 @@ export function DataTable<TData, TValue>({
   
           <Dialog>
             <DialogTrigger>
-              <span className="bg-blue-600 px-4 py-2 rounded-md text-white ml-auto flex items-center gap-2">
+              <div className="bg-blue-600 px-4 py-2 rounded-md text-white ml-auto flex items-center gap-2">
                 <Plus />Add
-              </span>
+              </div>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>

@@ -23,7 +23,7 @@ const WaterSourcesTimeline = () => {
     fetchData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  // if (loading) return <div>Loading...</div>;
   const waterStatus = [
     { title: "Borehole", total: 5 }
   ]
