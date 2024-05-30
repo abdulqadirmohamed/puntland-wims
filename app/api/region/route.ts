@@ -8,8 +8,8 @@ export async function GET() {
     try {
         const region = await prisma.region.findMany({
             include: {
-                District: { select: { name: true } },
-                Village: { select: { name: true } },
+                District: true,
+                Village: true,
                 Well: true,
             },
 
