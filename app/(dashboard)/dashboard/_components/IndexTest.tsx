@@ -77,18 +77,21 @@ const Home = () => {
     setFilteredWells(wells);
   }, [region, district, village, data]);
 
-  // Debugging: Log filtered wells
-  useEffect(() => {
-    console.log('Filtered Wells:', filteredWells);
-  }, [filteredWells]);
 
   const chartOptions = {
     chart: {
-      id: 'wells-chart'
+      id: 'wells-chart',
+      stacked: true,
+      toolbar:{
+        show: true
+      }
     },
     xaxis: {
       categories: filteredWells.map(well => well?.name || 'Unknown') 
-    }
+    },
+   total: {
+    enable: true
+   }
   };
 
   const chartSeries = [
@@ -107,14 +110,14 @@ const Home = () => {
   ];
 
   return (
-    <div>
+    <div className='bg-white'>
       <h1>Wells Data</h1>
-      <div className='flex justify-between'>
+      <div className='w-[60%] mx-auto flex justify-between'>
         <div>
           <label>
             Region:
             <select onChange={e => setRegion(e.target.value)} value={region}>
-              <option value=''>Select Region</option>
+              <option value=''>All Region</option>
               {data.map(region => (
                 <option key={region.id} value={region.name}>{region.name}</option>
               )) || []}
@@ -145,7 +148,7 @@ const Home = () => {
         </div>
 
       </div>
-      <Chart options={chartOptions} series={chartSeries} type="bar" height={320} />
+      <Chart options={chartOptions} series={chartSeries} type="bar" height={320} width={700} />
     </div>
   );
 };
