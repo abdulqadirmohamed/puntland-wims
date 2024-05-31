@@ -66,6 +66,7 @@ const waterMap = () => {
                     />
                     <MarkerClusterGroup>
                         {markers.map((marker) => (
+                        //@ts-ignore
                             <Marker position={marker.geocode}>
                                 <Popup>
                                     {marker.popUp}
