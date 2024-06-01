@@ -36,7 +36,7 @@ const Charts = () => {
     ];
 
     return (
-        <Chart options={chartOptions} series={chartSeries} type='bar' height={320} width={300} />
+        <Chart options={chartOptions} series={chartSeries} type='bar' height={230} width={300} />
     );
 };
 

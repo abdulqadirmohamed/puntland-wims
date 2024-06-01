@@ -18,7 +18,7 @@ const Filters = () => {
       <select
         onChange={(e) => setRegion(e.target.value)}
         value={region}
-        className='border border-gray-300 text-gray-600 text-base rounded-lg block w-full py-2.5 px-4 focus:outline-none'
+        className='border border-gray-300 text-gray-600 capitalize text-base rounded-lg block w-full py-2.5 px-4 focus:outline-none'
       >
         <option value='All'>Select Region</option>
         {data.map((region) => (
@@ -30,7 +30,7 @@ const Filters = () => {
       <select
         onChange={(e) => setDistrict(e.target.value)}
         value={district}
-        className='border border-gray-300 text-gray-600 text-base rounded-lg block w-full py-2.5 px-4 focus:outline-none'
+        className='border border-gray-300 text-gray-600 capitalize text-base rounded-lg block w-full py-2.5 px-4 focus:outline-none'
       >
         <option value=''>Select District</option>
         {data.find((r) => r.name === region)?.District?.map((district) => (
@@ -42,7 +42,7 @@ const Filters = () => {
       <select
         onChange={(e) => setVillage(e.target.value)}
         value={village}
-        className='border border-gray-300 text-gray-600 text-base rounded-lg block w-full py-2.5 px-4 focus:outline-none'
+        className='border border-gray-300 text-gray-600 capitalize text-base rounded-lg block w-full py-2.5 px-4 focus:outline-none'
       >
         <option value=''>Select Village</option>
         {data.find((r) => r.name === region)?.Village?.map((village) => (

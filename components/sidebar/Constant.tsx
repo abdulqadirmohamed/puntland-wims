@@ -1,12 +1,17 @@
 
 import { TSideBarItems } from "@/types/types";
-import { BadgeCentIcon, Building, CarTaxiFrontIcon, Droplet, Gauge, LayoutDashboard, Map, School, ShoppingBag, ShoppingCart, University, User, Users } from "lucide-react";
+import { BadgeCentIcon, Building, CarTaxiFrontIcon, Droplet, Filter, Gauge, LayoutDashboard, Map, School, ShoppingBag, ShoppingCart, University, User, Users } from "lucide-react";
 
 export const SideBarItems: TSideBarItems[] = [
     {
         title: "Dashboard",
         path: "/",
         icon: <LayoutDashboard size={20}/>
+    },
+    {
+        title: "Anaytics",
+        path: "/dashboard",
+        icon: <Filter size={20}/>,
     },
     {
         title: "Regions",
